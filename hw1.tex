@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage{fullpage,amsthm,amsfonts,amssymb,epsfig,amsmath}
+\usepackage{fullpage,amsthm,amsfonts,amssymb,epsfig,amsmath,soul}
 
 \begin{document}
 	\begin{flushleft}
@@ -37,22 +37,41 @@
 		Let $n \ge 0$. Let M be a $2^n \times 2^n$ matrix where \emph{M} contains exactly one 0 and the rest 1s. Assume there exists a sequence of "L" operations to obtain a 0 matrix for \emph{M}. Let \emph{M'} be a $2^{n + 1} \times 2^{n + 1}$ matrix containing exactly one 0 entry with 1s for the rest of the entries.\newline 
 		\emph{(continued on the next page.)}
 		\newpage
+		Since \emph{M'} is a $2^{n + 1} \times 2^{n + 1}$ matrix, \emph{M'} can be evenly divided into four quadrants with each quadrant containing $2^n \times 2^n$ matrix entries. This means that the initial 0 entry in \emph{M'} must lie within one of the four quadrants.
 		\[
 		\emph{M'} = 
 		\begin{bmatrix}
-		
-			0      & \dots  & 1      & 1      & \dots  & 1       \\
+			0      & \dots  & 1      & 1      & \dots  & 1      \\
 			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
 			1      & \dots  & 1      & 1      & \dots  & 1      \\     
-			1      & \dots  & 1      & 1      & \dots  & 1       \\
+			1      & \dots  & 1      & 1      & \dots  & 1      \\
 			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
 			1      & \dots  & 1      & 1      & \dots  & 1      \\   
-
 		\end{bmatrix}
 		\]
-		Since \emph{M'} is a $2^{n + 1} \times 2^{n + 1}$ matrix, \emph{M'} can be evenly divided into four quadrants with each quadrant containing $2^n \times 2^n$ matrix entries. This means that the initial 0 entry in \emph{M'} must be within one of the four quadrants.
-		
+		In the center of \emph{M'} all of the four quadrants are adjacent to each other. In the center of \emph{M'} an "L" operation can be applied to eliminate three 1s in the three quadrants not containing the initial 0.
+		\[
+		\begin{bmatrix}
+			0      & \dots  & 1      & 1      & \dots  & 1      \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			1      & \dots  & 1      & \st{$1$} & \dots  & 1      \\     
+			1      & \dots  & 0      & 0      & \dots  & 1      \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			1      & \dots  & 1      & 1      & \dots  & 1      \\   
+		\end{bmatrix}
+		\rightarrow
+		\begin{bmatrix}
+			0      & \dots  & 1      & 1      & \dots  & 1      \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			1      & \dots  & 1      & 0 	  & \dots  & 1      \\     
+			1      & \dots  & 0      & 0      & \dots  & 1      \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			1      & \dots  & 1      & 1      & \dots  & 1      \\   
+		\end{bmatrix}
+		\]
+		By applying the "L" operation in the center of \emph{M'}, we obtain four quadrants each containing $2^n \times 2^n$ entries with one zero entry per quadrant. By the induction hypothesis, it is possible to transform each of the four $2^n \times 2^n$ quadrants to all 0s by a sequence of "L" operations, thus a $2^{n + 1} \times 2^{n + 1}$ containing one 0 entry and 1s for the other entries can be transformed into the 0 matrix. 
 		\vspace{0.2cm}
+		\item \textbf {\underline{Problem 3:}} 
 		
 	\end{flushleft}
 \end{document}
