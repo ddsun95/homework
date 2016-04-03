@@ -54,7 +54,7 @@
 		\begin{bmatrix}
 			0      & \dots  & 1      & 1      & \dots  & 1      \\
 			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-			1      & \dots  & 1      & \st{$1$} & \dots  & 1      \\     
+			1      & \dots  & 1      & \st{1} & \dots  & 1      \\     
 			1      & \dots  & 0      & 0      & \dots  & 1      \\
 			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
 			1      & \dots  & 1      & 1      & \dots  & 1      \\   
@@ -71,7 +71,15 @@
 		\]
 		By applying the "L" operation in the center of \emph{M'}, we obtain four quadrants each containing $2^n \times 2^n$ entries with one zero entry per quadrant. By the induction hypothesis, it is possible to transform each of the four $2^n \times 2^n$ quadrants to all 0s by a sequence of "L" operations, thus a $2^{n + 1} \times 2^{n + 1}$ containing one 0 entry and 1s for the other entries can be transformed into the 0 matrix. 
 		\vspace{0.2cm}
-		\item \textbf {\underline{Problem 3:}} 
+		\item \textbf {\underline{Problem 3:}}  Suppose you are given an array $A$ of $n$ distinct
+		integers with the following property:
+		There exists a unique index $p$ such that the values of
+		$A[1\ldots p]$ are decreasing and the values of $A[p \ldots
+		n]$ are increasing.\newline\newline
+		\textbf{Algorithm:}
+		Our divide and conquer algorithm will be called findIndex(A, low, high). Suppose A has length N, then we will initially call the function in the manner findIndex(A, 1, N). If A has length 1, we return 1 as the index. Otherwise, we compute the midpoint of the low index and the high index such that mid = $\left\lfloor\dfrac{low + high}{2}\right\rfloor$. \newline
+		If mid \textgreater{ 1} and mid \textless{ N} check if \emph{A}[mid - 1] \textgreater a[mid] \textless a[mid + 1]. If such is the case, return mid since we have found the correct index. If that condition does not hold, check if A[mid]
+		\vspace{0.2cm}
 		
 	\end{flushleft}
 \end{document}
