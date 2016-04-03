@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage,amsthm,amsfonts,amssymb,epsfig,amsmath}
+
+\begin{document}
+	\begin{flushleft}
+		David Sun\newline
+		CMPS 102\newline
+		Homework 1\newline
+
+		\item \textbf {\underline{Problem 1:}} 
+		In a binary tree all nodes are either internal or they are leaves.  In our definition, internal
+		nodes always have two children and leaves have zero children.  Prove that for such trees, the
+		number of leaves is always one more than the number of internal nodes.\newline
+		
+		\textbf{Proof:}\newline
+		If \emph{T} is a tree containing \emph{n} internal nodes, then \emph{T} contains \emph{n} + 1 leaves\newline\newline
+		\textbf{I. Base Case}\newline
+		If \emph{T} has just one internal node, then \emph{T} has two leaves, thus the number of leaves in \emph{T} is one greater than the number of internal nodes in \emph{T}.\newline\newline
+		\textbf{II. Induction Step}\newline
+		Let \emph{n} $\geq 1$. Assume that all trees containing \emph{n} internal nodes contain \emph{n} + 1 leaves. Generate another internal node on \emph{T} by taking an arbitrary leaf node in \emph{T} and attaching two leaf nodes to it. By generating another internal node, \emph{T} now contains \emph{n} + 1 internal nodes. By our induction hypothesis, \emph{T} now contains (\emph{n} + 1) + 1 leaf nodes. In the process of generating a new internal node, we eliminated a leaf node and attached two additional leaf nodes to \emph{T}, thus \newline ((\emph{n} + 1) - 1) + 2 = (\emph{n} + 1) + 1, as required. 
+		\vspace{.2cm}
+		
+		\item \textbf {\underline{Problem 2:}}
+		For $n\ge0$ consider $2^n \times 2^n$ matrices of 1s and 0s in
+		which all elements are 1, except one 
+		which is 0 (The 0 is at an arbitrary position). 
+		Operation: At each step, we can replace three 1s forming an
+		"L" with three 0s (The L's can have an arbitrary orientation).\newline
+		
+		\textbf{Proof:}\newline
+		If M is a $2^n \times 2^n$ matrix consisting of all 1s and one 0, there exists a sequence of "L" operations such that replacing three 1s in an "L" pattern in M will give us the 0 matrix. \newline
+		
+		\textbf{I. Base Case}\newline
+		\emph{n} = 0. A $2^0 \times 2^0$ matrix is a 1 $\times$ 1 matrix. The only element can be a 0, and thus applying the "L" operation 0 times is sufficient to obtain the 0 matrix.\newline 
+		
+		\textbf{II. Induction Step}
+		Let $n \ge 0$. Let M be a $2^n \times 2^n$ matrix where M contains exactly one 0 and the rest 1s. Assume there exists a sequence of "L" operations to obtain a 0 matrix for M. For a $2^{n+1} \times 2^{n+1}$ matrix M', we can divide M' into four quadrants, with each of the quadrants containing 
+		\vspace{0.2cm}
+		
+	\end{flushleft}
+\end{document}
