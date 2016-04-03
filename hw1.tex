@@ -17,7 +17,7 @@
 		\textbf{I. Base Case}\newline
 		If \emph{T} has just one internal node, then \emph{T} has two leaves, thus the number of leaves in \emph{T} is one greater than the number of internal nodes in \emph{T}.\newline\newline
 		\textbf{II. Induction Step}\newline
-		Let \emph{n} $\geq 1$. Assume that all trees containing \emph{n} internal nodes contain \emph{n} + 1 leaves. Generate another internal node on \emph{T} by taking an arbitrary leaf node in \emph{T} and attaching two leaf nodes to it. By generating another internal node, \emph{T} now contains \emph{n} + 1 internal nodes. By our induction hypothesis, \emph{T} now contains (\emph{n} + 1) + 1 leaf nodes. In the process of generating a new internal node, we eliminated a leaf node and attached two additional leaf nodes to \emph{T}, thus \newline ((\emph{n} + 1) - 1) + 2 = (\emph{n} + 1) + 1, as required. 
+		Let \emph{n} $\geq 1$. Assume that all trees containing \emph{n} internal nodes contain \emph{n} + 1 leaves. Generate another internal node on \emph{T} by taking an arbitrary leaf node in \emph{T} and attaching two leaf nodes to it. By generating another internal node, \emph{T} now contains \emph{n} + 1 internal nodes. In the process of generating a new internal node, one leaf node is eliminated from \emph{T} and two leaf nodes are attached to \emph{T}, so \emph{T} now contains ((\emph{n} + 1) - 1) + 2 leaf nodes. By the induction hypothesis, a tree containing \emph{n} + 1 internal nodes contains (\emph{n} + 1) + 1 leaves. \newline Thus, ((\emph{n} + 1) - 1) + 2 = (\emph{n} + 1) + 1 as required. 
 		\vspace{.2cm}
 		
 		\item \textbf {\underline{Problem 2:}}
@@ -34,7 +34,7 @@
 		\emph{n} = 0. A $2^0 \times 2^0$ matrix is a 1 $\times$ 1 matrix. The only entry can be a 0, and thus applying the "L" operation 0 times is sufficient to obtain the 0 matrix.\newline 
 		
 		\textbf{II. Induction Step}\newline
-		Let $n \ge 0$. Let M be a $2^n \times 2^n$ matrix where M contains exactly one 0 and the rest 1s. Assume there exists a sequence of "L" operations to obtain a 0 matrix for M. Let \emph{M'} be a $2^{n + 1} \times 2^{n + 1}$ matrix containing exactly one 0 entry with 1s for the rest of the entries.\newline 
+		Let $n \ge 0$. Let M be a $2^n \times 2^n$ matrix where \emph{M} contains exactly one 0 and the rest 1s. Assume there exists a sequence of "L" operations to obtain a 0 matrix for \emph{M}. Let \emph{M'} be a $2^{n + 1} \times 2^{n + 1}$ matrix containing exactly one 0 entry with 1s for the rest of the entries.\newline 
 		\emph{(continued on the next page.)}
 		\newpage
 		\[
@@ -50,7 +50,7 @@
 
 		\end{bmatrix}
 		\]
-		
+		Since \emph{M'} is a $2^{n + 1} \times 2^{n + 1}$ matrix, \emph{M'} can be evenly divided into four quadrants with each quadrant containing $2^n \times 2^n$ matrix entries. This means that the initial 0 entry in \emph{M'} must be within one of the four quadrants.
 		
 		\vspace{0.2cm}
 		
