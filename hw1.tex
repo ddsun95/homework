@@ -78,7 +78,11 @@
 		n]$ are increasing.\newline\newline
 		\textbf{Algorithm:}
 		Our divide and conquer algorithm will be called findIndex(A, low, high). Suppose A has length N, then we will initially call the function in the manner findIndex(A, 1, N). If A has length 1, we return 1 as the index. Otherwise, we compute the midpoint of the low index and the high index such that mid = $\left\lfloor\dfrac{low + high}{2}\right\rfloor$. \newline
-		If mid \textgreater{ 1} and mid \textless{ N} check if \emph{A}[mid - 1] \textgreater a[mid] \textless a[mid + 1]. If such is the case, return mid since we have found the correct index. If that condition does not hold, check if A[mid]
+		If mid \textgreater{ 1} and mid \textless{ N}, check if $A[mid - 1]$ \textgreater $A[mid]$ \textless a[mid + 1]. If such is the case, return mid since we have found the correct index. If that condition does not hold, check if \newline A[mid - 1] \textgreater{ A[mid]} 
+		\textgreater{ A[mid + 1]}. If such is the case, then p lies within $A[mid + 1 \dots N]$ So we will recur to the right of the array by calling findIndex$(A, mid + 1, high)$.
+		However, if instead A[mid - 1] \textless{ A[mid]} \textless { A[mid + 1]} then \emph{p} lies in the left half of \emph{A}, so we will recur to the left of the array by calling
+		\textbf{findIndex$(A, low, mid -1)$}.\newline\newline
+		In the case that mid = 1, check if $A[mid] \textless { A[mid + 1]}$, 
 		\vspace{0.2cm}
 		
 	\end{flushleft}
