@@ -31,10 +31,27 @@
 		If M is a $2^n \times 2^n$ matrix consisting of all 1s and one 0, there exists a sequence of "L" operations such that replacing three 1s in an "L" pattern in M will give us the 0 matrix. \newline
 		
 		\textbf{I. Base Case}\newline
-		\emph{n} = 0. A $2^0 \times 2^0$ matrix is a 1 $\times$ 1 matrix. The only element can be a 0, and thus applying the "L" operation 0 times is sufficient to obtain the 0 matrix.\newline 
+		\emph{n} = 0. A $2^0 \times 2^0$ matrix is a 1 $\times$ 1 matrix. The only entry can be a 0, and thus applying the "L" operation 0 times is sufficient to obtain the 0 matrix.\newline 
 		
-		\textbf{II. Induction Step}
-		Let $n \ge 0$. Let M be a $2^n \times 2^n$ matrix where M contains exactly one 0 and the rest 1s. Assume there exists a sequence of "L" operations to obtain a 0 matrix for M. For a $2^{n+1} \times 2^{n+1}$ matrix M', we can divide M' into four quadrants, with each of the quadrants containing 
+		\textbf{II. Induction Step}\newline
+		Let $n \ge 0$. Let M be a $2^n \times 2^n$ matrix where M contains exactly one 0 and the rest 1s. Assume there exists a sequence of "L" operations to obtain a 0 matrix for M. Let \emph{M'} be a $2^{n + 1} \times 2^{n + 1}$ matrix containing exactly one 0 entry with 1s for the rest of the entries.\newline 
+		\emph{(continued on the next page.)}
+		\newpage
+		\[
+		\emph{M'} = 
+		\begin{bmatrix}
+		
+			0      & \dots  & 1      & 1      & \dots  & 1       \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			1      & \dots  & 1      & 1      & \dots  & 1      \\     
+			1      & \dots  & 1      & 1      & \dots  & 1       \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			1      & \dots  & 1      & 1      & \dots  & 1      \\   
+
+		\end{bmatrix}
+		\]
+		
+		
 		\vspace{0.2cm}
 		
 	\end{flushleft}
