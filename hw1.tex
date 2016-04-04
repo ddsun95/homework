@@ -54,8 +54,8 @@
 		\begin{bmatrix}
 			0      & \dots  & 1      & 1      & \dots  & 1      \\
 			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-			1      & \dots  & 1      & \st{1} & \dots  & 1      \\     
-			1      & \dots  & 0      & 0      & \dots  & 1      \\
+			1      & \dots  & 1      & 1	  & \dots  & 1      \\     
+			1      & \dots  & 1      & 1      & \dots  & 1      \\
 			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
 			1      & \dots  & 1      & 1      & \dots  & 1      \\   
 		\end{bmatrix}
@@ -86,9 +86,20 @@
 		In the case that $mid = 1$, check if $A[mid] < A[mid + 1]$, if such is the case, then $p = 1$ so return $mid$. Otherwise recur to the right by calling \textbf{findIndex}$(A, mid + 1, high)$\newline
 		In the case that $mid = N$, check if $A[mid] < A[mid - 1]$, if such is the case, then $p = N$ so return $mid$. Otherwise, recur to the left by calling \textbf{findIndex}$(A, low, mid - 1)$\newline
 		  
-		\textbf{Proof of Correctness:}
-		
+		\textbf{Proof of Correctness:} The invariant that all elements from $A[1 \dots p]$ are decreasing and all elements from $A[p \dots N]$ are increasing suggests that $p$ must either lie within $A[1 \dots \left\lfloor\frac{N}{2}\right\rfloor]$ or 
+		$A[\left\lfloor\frac{N}{2}\right\rfloor + 1 \dots N]$. \newline
+		If the middle element satisfies the condition for $p$, then we're done.
+		If the middle element is within a decreasing pattern, $p$ lies within the right subarray.  
+		If the middle element is within an increasing pattern \emph{(5, 4, 3,...)}, $p$ lies within the left subarray
+		In any case, our algorithm converges to a $p$ index by checking the conditions of the middle element and deciding whether to return the index of the middle element or to recur on the the left subarray or the right subarray. \newline
 		\vspace{0.2cm}
+		
+		\textbf{Proof of Runtime:} By recurring either to left subarray or to the right subarray, the algorithm essentially discards half the input size each time. There are also a few array element comparisons, but those are done in constant time. The recurrence can be written as $T(n) = T(n / 2) + O(1)$. Using Master's theorem, we can show that $T(n)$ = $O$(log $n$).
+		\vspace{0.2cm}
+		
+		\item \textbf {\underline{Problem 4:}} Consider a complete binary tree $T$ with $n$ nodes ($n = 2^d-1$ for some $d$). Each node $v$ of $T$ is labeled with a distinct real number $x_v$. Define a node $v$ of $T$ to be a \textit{local minimum} if the label $x_v$ is less than the label $x_w$ for all nodes $w$ that are joined to $v$ by an edge. You are given such a complete binary tree $T$, but the labeling is only specified in the following implicit way: for each node $v$, you can determine the value $x_v$ by probing the node $v$. Show how to find a local minimum of $T$ using only $O(\log n)$ probes to the nodes of $T$.\newline
+		
+		\textbf{Algorithm:}
 		
 	\end{flushleft}
 \end{document}
