@@ -89,8 +89,8 @@
 		\textbf{Proof of Correctness:} The invariant that all elements from $A[1 \dots p]$ are decreasing and all elements from $A[p \dots N]$ are increasing suggests that $p$ must either lie within $A[1 \dots \left\lfloor\frac{N}{2}\right\rfloor]$ or 
 		$A[\left\lfloor\frac{N}{2}\right\rfloor + 1 \dots N]$. \newline
 		If the middle element satisfies the condition for $p$, then we're done.
-		If the middle element is within a decreasing pattern, $p$ must lie within the right subarray.  
-		If the middle element is within an increasing pattern, $p$ must lie within the left subarray.
+		If the middle element is within a decreasing pattern \emph{e.g. (...,5,4,3,...)}, $p$ must lie within the right subarray.  
+		If the middle element is within an increasing pattern \emph{e.g. (...,3,4,5,...)}, $p$ must lie within the left subarray.
 		In any case, our algorithm converges to the $p$ index by checking the conditions of the middle element and deciding whether to return the index of the middle element or to recur on the the left subarray or the right subarray. \newline
 		\vspace{0.2cm}
 		
