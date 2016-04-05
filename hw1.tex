@@ -77,10 +77,10 @@
 		$A[1\ldots p]$ are decreasing and the values of $A[p \ldots
 		n]$ are increasing.\newline\newline
 		\textbf{Algorithm:}
-		Our divide and conquer algorithm will be called findIndex(A, low, high). Suppose A has length N, then we will initially call the function in the manner findIndex(A, 1, N). If A has length 1, we return 1 as the index. Otherwise, we compute the midpoint of the low index and the high index such that $mid$ = $\left\lfloor\dfrac{low + high}{2}\right\rfloor$. \newline
-		If $mid > 1$ and  $mid < N$, check if $A[mid - 1]$ \textgreater $A[mid]$ \textless $A[mid + 1]$. If such is the case, return mid since we have found the correct index. If that condition does not hold, check if \newline A[mid - 1] \textgreater{ A[mid]} 
-		\textgreater{ A[mid + 1]}. If such is the case, then p lies within $A[mid + 1 \dots N]$ So we will recur to the right of the array by calling \textbf{findIndex}$(A, mid + 1, high)$.
-		However, if instead A[mid - 1] \textless{ A[mid]} \textless { A[mid + 1]} then \emph{p} lies in the left half of \emph{A}, so we will recur to the left of the array by calling
+		Our divide and conquer algorithm will be called \textbf{findIndex}(A, low, high). Suppose A has length N, then we will initially call the function in the manner \textbf{findIndex}(A, 1, N). If A has length 1, we return 1 as the index. Otherwise, we compute the midpoint of the low index and the high index such that $mid$ = $\left\lfloor\dfrac{low + high}{2}\right\rfloor$. \newline
+		If $mid > 1$ and  $mid < N$, check if $A[mid - 1]$ \textgreater $A[mid]$ \textless $A[mid + 1]$. If such is the case, return $mid$ since we have found the correct index. If that condition does not hold, check if \newline $A[mid - 1]$ \textgreater{ $A[mid]$} 
+		\textgreater{ $A[mid + 1]$}. If such is the case, then p lies within $A[mid + 1 \dots N]$ So we will recur to the right of the array by calling \textbf{findIndex}$(A, mid + 1, high)$.
+		However, if instead $A[mid - 1]$ \textless{ $A[mid]$} \textless { $A[mid + 1]$} then \emph{p} lies in the left half of \emph{A}, so we will recur to the left of the array by calling
 		\textbf{findIndex$(A, low, mid -1)$}.\newpage
 		Edge cases in which $mid = 1$ or $mid = N$ must also be considered.\newline
 		In the case that $mid = 1$, check if $A[mid] < A[mid + 1]$, if such is the case, then $p = 1$ so return $mid$. Otherwise recur to the right by calling \textbf{findIndex}$(A, mid + 1, high)$\newline
@@ -89,23 +89,23 @@
 		\textbf{Proof of Correctness:} The invariant that all elements from $A[1 \dots p]$ are decreasing and all elements from $A[p \dots N]$ are increasing suggests that $p$ must either lie within $A[1 \dots \left\lfloor\frac{N}{2}\right\rfloor]$ or 
 		$A[\left\lfloor\frac{N}{2}\right\rfloor + 1 \dots N]$. \newline
 		If the middle element satisfies the condition for $p$, then we're done.
-		If the middle element is within a decreasing pattern, $p$ lies within the right subarray.  
-		If the middle element is within an increasing pattern \emph{(5, 4, 3,...)}, $p$ lies within the left subarray
-		In any case, our algorithm converges to a $p$ index by checking the conditions of the middle element and deciding whether to return the index of the middle element or to recur on the the left subarray or the right subarray. \newline
+		If the middle element is within a decreasing pattern, $p$ must lie within the right subarray.  
+		If the middle element is within an increasing pattern, $p$ must lie within the left subarray.
+		In any case, our algorithm converges to the $p$ index by checking the conditions of the middle element and deciding whether to return the index of the middle element or to recur on the the left subarray or the right subarray. \newline
 		\vspace{0.2cm}
 		
-		\textbf{Proof of Runtime:} By recurring either to left subarray or to the right subarray, the algorithm essentially discards half the input size each time. There are also a few array element comparisons, but those are done in constant time. The recurrence can be written as $T(n) = T(n / 2) + O(1)$. Using the master theorem, we can show that $T(n)$ = $O$(log $n$).
+		\textbf{Proof of Runtime:} If $N$ is the input size, recurring either to left subarray or to the right subarray, halves the input size. There are array element comparison which are done in constant $O(1)$ time. The recurrence can be written as $T(n) = T(n / 2) + O(1)$. Using the master theorem, we can show that $T(n)$ = $O$(log $n$).
 		\vspace{0.2cm}
 		
 		\item \textbf {\underline{Problem 4:}} Consider a complete binary tree $T$ with $n$ nodes ($n = 2^d-1$ for some $d$). Each node $v$ of $T$ is labeled with a distinct real number $x_v$. Define a node $v$ of $T$ to be a \textit{local minimum} if the label $x_v$ is less than the label $x_w$ for all nodes $w$ that are joined to $v$ by an edge. You are given such a complete binary tree $T$, but the labeling is only specified in the following implicit way: for each node $v$, you can determine the value $x_v$ by probing the node $v$. Show how to find a local minimum of $T$ using only $O(\log n)$ probes to the nodes of $T$.\newline
 		
-		\textbf{Algorithm:} Start at the root of $T$. We'll call that node $v$ and its label $x_v$. If the left child of $v$ is not $NIL$ and $x_v$ is greater than the label of $v's$ left child, recur on the left subtree with the left child of $v$ as the root. Else if the right child of $v$ is not $NIL$ and $x_v$ is greater than the label of $v's$ right child, recur on the right subtree with the right child of $v$ as the root. Else If both of these comparisons do not hold, then $v$ must be a local minimum and therefore we return $x_v$. 
+		\textbf{Algorithm:} Start at the root of $T$. We'll call that node $v$ and its label $x_v$. If the left child of $v$ is not $NIL$ and $x_v$ is greater than the label of $v's$ left child, recur on the left subtree with the left child of $v$ as the root. Otherwise, if the right child of $v$ is not $NIL$ and $x_v$ is greater than the label of $v's$ right child, recur on the right subtree with the right child of $v$ as the root. If both of these comparisons do not hold, then $v$ must be a local minimum and therefore we return $x_v$. 
 		\newline
 		
-		\textbf{Proof of Correctness:} By definition, a local minimum is a node in which its label is less than that of the node's connected to it by an edge. Our algorithm searches a node's left child and right child for a lower valued label. If such a node exists, then the current node is not a local minimum and we recur on the first node we find with a lower valued label.\newline However, if a node is a leaf, or its two children have label values greater than itself, then the node must be a minimum. In this case, we do not need to check the label of the node's parent because this node must have had a label value less than that of its parent's in order for the algorithm to recur on it.   
+		\textbf{Proof of Correctness:} By definition, a local minimum is a node in which its label is less than that of the node's connected to it by an edge. This means that either the root is a local minimum, or the local minimum is within the left subtree or the right subtree. Our algorithm searches a node's left child and right child for a lower valued label. If such a node $x_w$ exists, then the current node is not a local minimum and we recur on the subtree with $x_w$ as the root.\newline However, if a node is a leaf, or its two children have label values greater than itself, then the node must be a minimum.
 		\newpage
 		
-		\textbf{Proof of Runtime:} If N is the input size, recurring on the left or the right discards $\left\lceil\frac{N}{2}\right\rceil$ elements, meaning that $\left\lfloor\frac{N}{2}\right\rfloor$ elements remain. There are also steps in the algorithm to compare the labels of the nodes, which take constant $O(1)$ time. The recurrence can be summarized as $T(n) = T(\left\lfloor\frac{N}{2}\right\rfloor) + O(1)$. Using the master theorem, we can show that $T(n)$ = $O$(log $n$).
+		\textbf{Proof of Runtime:} If $N$ is the input size, recurring on the left or the right discards $\left\lceil\frac{N}{2}\right\rceil$ elements, meaning that $\left\lfloor\frac{N}{2}\right\rfloor$ elements remain. There are also steps in the algorithm to compare the labels of the nodes, which take constant $O(1)$ time. The recurrence can be summarized as $T(N) = T(\left\lfloor\frac{N}{2}\right\rfloor) + O(1)$. Using the master theorem, we can show that $T(n)$ = $O$(log $n$).
 		\vspace{0.2cm}
 		
 		\item \textbf {\underline{Problem 5:}} Show that for any non-negative integers $a,b$,
@@ -144,7 +144,47 @@
 		\centering{\flushleft{Let $c^{1/b} = 1$, therefore $c = 1$, thus}}
 		\centering{\flushleft{$-a \leq 0$}}
 		\end{center}
-		In this case, $c = 1$, and we can pick any arbitrary $n_0 > 0$, so choose $n_0 = a$. Using these values for $c$ and $n_0$, we can show that $0 \leq c \cdot n^b \leq (n + a)^b$, and therefore $(n+a)^b$ = $\Omega(n^b)$. Since we have shown that $(n+a)^b$ is $O(n^b)$ and  $\Omega(n^b)$, $(n+a)^b$ = $\Theta(n^b)$.
+		In this case, $c = 1$, and we can pick any arbitrary $n_0 > 0$, so choose $n_0 = a$. Using these values for $c$ and $n_0$, we can show that $0 \leq c \cdot n^b \leq (n + a)^b$, and therefore $(n+a)^b$ = $\Omega(n^b)$. 
+		\newline
+		Since we have shown that $(n+a)^b$ is $O(n^b)$ and  $\Omega(n^b)$, $(n+a)^b$ = $\Theta(n^b)$.
+		\newpage
 		
+		\item \textbf {\underline{Problem 5 Extra Credit:}} Show that for any non-negative integer $b$ and any negative integer $a$,
+		$(n+a)^b = \Theta(n^b).$\newline
+		Let $z$ = $-a$, so that $(n+a)^b = (n-z)^b$ 
+		
+		\textbf{\underline{Proof}}\newline
+		\textbf{Case 1: $(n-z)^b$ = $O(n^b)$}. \newline
+		If $f(n) = O(g(n))$, then $\exists c > 0$ $\exists n_0 > 0$ such that 
+		$0 \leq f(n) \leq c \cdot g(n)$. Then $\dots$
+		\begin{center}
+		\centering{$\exists c > 0$ $\exists n_0 > 0$ such that 
+			$0 \leq (n-z)^b \leq c \cdot n^b$.}
+		\centering{\flushleft{$(n-z)^b \leq c \cdot n^b$}}
+		\centering{\flushleft{$n-z \leq c^{1/b} \cdot n$}}
+		\centering{\flushleft{$-z \leq c^{1/b} \cdot n - n$}}
+		\centering{\flushleft{$-z \leq n(c^{1/b} - 1)$}}
+		\centering{\flushleft{Let $c^{1/b} = 2$, therefore $c = 2^b$}}
+		\centering{\flushleft{$-z \leq n (2 - 1)$}}
+		\centering{\flushleft{$-z \leq n$}}
+		\end{center}
+		Choose $n_0 = |-z|$ and $c = 2^b$, so $0 \leq (n-z)^b \leq c \cdot n^b$. Thus $(n-z)^b$ = $O(n^b)$ so $(n+a)^b$ = $O(n^b)$ for any positive integer $b$ and any negative integer $a$.
+		\newline\newline
+		\textbf{Case 2: $(n-z)^b$ = $\Omega(n^b)$}. \newline
+		If $f(n) = \Omega(g(n))$, then $\exists c > 0$ $\exists n_0 > 0$ such that 
+		$0 \leq c \cdot g(n) \leq f(n)$. Then $\dots$
+		\begin{center}
+		\centering{$\exists c > 0$ $\exists n_0 > 0$ such that 
+			$0 \leq c \cdot n^b \leq (n - z)^b$.}
+		\centering{\flushleft{$c \cdot n^b \leq (n-z)^b$}}
+		\centering{\flushleft{$c^{1/b} \cdot n \leq n-z$}}
+		\centering{\flushleft{$z \leq n-c^{1/b} \cdot n$}}
+		\centering{\flushleft{$z \leq n(1 -c^{1/b})$}}
+		\centering{\flushleft{Let $c^{1/b} = \frac{1}{2}$, therefore $c = (\frac{1}{2})^b$}}
+		\centering{\flushleft{$z \leq n(1 -\frac{1}{2})$ $\rightarrow$
+		$z \leq \frac{n}{2}$ $\rightarrow$ $2z \leq n$}}
+		\end{center}
+		Choose $n_0 = 2z$ and $c = (\frac{1}{2})^b$, so $0 \leq c \cdot n^b \leq (n - z)^b$. Then $(n - z)^b = \Omega(n^b)$ so $(n+a)^b$ = $\Omega(n^b)$ for any positive integer $b$ and any negative integer $a$. \newline
+		Since $(n-z)^b$ = $O(n^b)$ and $(n - z)^b = \Omega(n^b)$, $(n-z)^b = \Theta(n^b)$ $\iff$ $(n+a)^b$  $\Theta(n^b)$.
 	\end{flushleft}
 \end{document}
