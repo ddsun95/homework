@@ -13,6 +13,10 @@
 			\item[c)] $O(n + k \log k)$
 		\end{enumerate}
 		\textbf{Note:} For all problems, an array will be used to represent the heap. \newline
-		a)
+		\newline
+		a) For part a, we initially allocate an array of size $k$ for our heap with all the elements initialized to $-\infty$ \emph{(according to CLRS, a heap containing all duplicate keys can still be classified as a valid min-heap).}
+		Then, we will make a pass through our array $A$ from $A[1 \dots length[A]]$. For each $A_i$ where $i \in$ $\lbrace 1 \dots length[A] \rbrace$, check if $-A_i$ is greater than the minimum of the heap. If such is the case, call remove on the heap, and insert $-A_i$ into the heap. We apply this operation for $length[A]$ iterations. Once we've scanned through all the elements in $A$, the $kth$ smallest element should be $-1 * smallest(heap)$.
+		\textbf{Correctness for a:} 
+		
 	\end{flushleft}
 \end{document}
