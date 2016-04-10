@@ -45,6 +45,15 @@
 		\newline
 		\textbf{Inductive Step:} Assume for all $k$, $3 \leq k < n$ that the algorithm properly sorts an array of size $k$. Then, for an array $A$ of size $n$, we can partition up $A$ into three segments B, C, and D, with B containing 
 		$A[1 \dots \frac{n}{3}]$, C containing $A[\frac{n}{3} + 1 \dots \frac{2n}{3}]$, and D containing $A[\frac{2n}{3} + 1 \dots n]$. 
-		
+		\newline
+		Sorting the initial 2/3 of the array sorts B and C. By the inductive hypothesis, B and C are properly sorted and BC is a properly sorted segment with every element in B less than or equal to every element in C.
+		\newline
+		Sorting the final 2/3 of the array sorts C and D. By the inductive hypothesis, C and D are properly sorted and CD is a properly sorted segment with every element in C less than or equal to every element in D. This ensures that every element in D is greater than or equal to the elements in both B and C. 
+		\newline
+		Sorting the initial 2/3 of the array sorts B and C again. In the process of sorting CD, C contained the minimal values of D, which could be less than the elements found in B. Thus sorting the the initial 2/3 again ensures every element in B is less than or equal every element in C, by the inductive hypothesis.
+		\newline
+		Since B, C, D are properly sorted segments and $\forall b \in B$, $\forall c \in C$, $\forall d \in D$, $b \leq c \leq d$, the algorithm properly sorts the array.
+		\newline
+		\textbf{Runtime analysis:} The algorithm divides the problem into three sub-problems each of size $\frac{2n}{3}$. At each level, there is no other work done so we'll add an $O(1)$ overhead. The recurrence can be written as $T(n) = 3T(\frac{2n}{3}) + O(1)$ or $T(n) = 3T(\frac{n}{1.5}) + O(1)$. We can now apply the master theorem. 
 	\end{flushleft}
 \end{document}
