@@ -33,5 +33,18 @@
 		\textbf{Correctness for c:} !!NEEDS TO BE COMPLETED!!
 		\newline
 		\textbf{Runtime analysis for c:} If the original array has size $n$, buildheap on the original array is an $O(n)$ operation. After buildheap, we execute $k - 1$ operations of insert and remove on $H$, which has size $k$. In the worst case, one remove and two inserts will be called, which has a runtime of $3 \log k$. In general, the algorithm takes $n + (k - 1) \cdot 3 \log k$ time to execute, which means the algorithm is $O(n + k \log k)$.
+		\newline
+		\item \textbf {\underline{Problem 2:}} Consider the following sorting algorithm for an array of numbers (Assume the size $n$ of the array is divisible by 3):
+		\begin{itemize}
+			\item   Sort the initial 2/3 of the array.
+			\item   Sort the final 2/3 and then again the initial 2/3.
+		\end{itemize}
+		\textbf{Correctness:} Use induction on $n$, the size of the array, which we'll call $A$. 
+		\newline
+		\textbf{Base Case:} $n = 3$. Sorting the initial 2/3 ensures $A[1] \leq A[2]$. Sorting the final 2/3 ensures $A[2] \leq A[3]$, thus ensuring that $A[1] \leq A[3]$ and $A[2] \leq A[3]$. Sorting the initial 2/3 ensures again $A[1] \leq A[2]$, ensuring $A[1] \leq A[2] \leq A[3]$.  
+		\newline
+		\textbf{Inductive Step:} Assume for all $k$, $3 \leq k < n$ that the algorithm properly sorts an array of size $k$. Then, for an array $A$ of size $n$, we can partition up $A$ into three segments B, C, and D, with B containing 
+		$A[1 \dots \frac{n}{3}]$, C containing $A[\frac{n}{3} + 1 \dots \frac{2n}{3}]$, and D containing $A[\frac{2n}{3} + 1 \dots n]$. 
+		
 	\end{flushleft}
 \end{document}
