@@ -54,6 +54,19 @@
 		\newline
 		Since B, C, D are properly sorted segments and $\forall b \in B$, $\forall c \in C$, $\forall d \in D$, $b \leq c \leq d$, the algorithm properly sorts the array.
 		\newline
-		\textbf{Runtime analysis:} The algorithm divides the problem into three sub-problems each of size $\frac{2n}{3}$. At each level, there is no other work done so we'll add an $O(1)$ overhead. The recurrence can be written as $T(n) = 3T(\frac{2n}{3}) + O(1)$ or $T(n) = 3T(\frac{n}{1.5}) + O(1)$. We can now apply the master theorem. 
+		\textbf{Runtime analysis:} The algorithm divides the problem into three sub-problems each of size $\frac{2n}{3}$. At each level, there is no other work done so we'll add an $O(1)$ overhead. The recurrence can be written as $T(n) = 3T(\frac{2n}{3}) + O(1)$ or $T(n) = 3T(\frac{n}{1.5}) + O(1)$. We can now apply the master theorem. $a = 3$, $b = 1.5$, $f(n) = n^0$ $k = \log_{1.5}3$. $f(n) = O(n^{k - \epsilon})$ so $T(n) = \Theta(n^{log_{1.5}3})$.
+		\newpage
+		\item \textbf {\underline{Problem 3:}} KT, problem 1, p 246.
+		\newline
+		\textbf{Algorithm:} Call our two databases D1 and D2. Our divide and conquer algorithm will be called \textbf{findMedian}(D1, D2, lo1, hi1, lo2, hi2). The algorithm will initially be called in the manner \textbf{findMedian}(D1, D2, 1, N, 1, N), if N is the number of elements within each of the databases. The base case of the algorithm will checks if $lo1 == hi1$. If so, return $D1[lo1]$ as the median of the two databases. Otherwise if $lo2 == hi2$, return $D2[lo2]$ as the median of the two databases. 
+		\newline
+		If the above comparisons do not hold, let $mid1$ = $\lfloor \frac{lo1 + hi1}{2} \rfloor$
+		and let $mid2$ = $\lfloor \frac{lo2 + hi2}{2} \rfloor$. Compare $D1[mid1]$ and $D2[mid2]$. If $D1[mid1] > D2[mid2]$, the median of the two lists lies within the lower half of D1 and in the upper half of D2, so call 
+		\textbf{findMedian}(D1, D2, lo1, mid1, mid2, hi2).
+		\newline
+		If instead $D1[mid1] < D2[mid2]$ then the median lies of the two lists lies within the upper half of D1, and in the lower half of D2, then call \textbf{findMedian}(D1, D2, mid1, hi1, lo1, mid2). 
+		\newline
+		\newline
+		\textbf{Proof of correctness:} The median of both D1 and D2 must lie within one half of D1 or one half of D2. 
 	\end{flushleft}
 \end{document}
