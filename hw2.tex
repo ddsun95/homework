@@ -28,7 +28,10 @@
 		\textbf{Runtime analysis for b:} Buildheap on an array of size $n$ is an $O(n)$ 	operation. After buildheap executes, calling remove on a heap of size $n$ $k - 1$ times costs $(k - 1) \log n$ time. In general, the algorithm runs in
 		$n + (k - 1) \log n$ time, which means that the algorithm is $O(n + k \log n)$.
 		\newpage
-		\textbf{c)}
-		
+		\textbf{c)} Call buildheap on the array, ensuring the array is now a valid min-heap, call this heap $A$. Allocate another array of size $k$ for our second heap. Let $H$ be a heap containing a key-value pair, with its keys being the elements of $A$ and the values being the index at which the element is found. Initially, insert the smallest of $A$ along with the index of the smallest into $H$. At each iteration, remove the smallest value-index pair $(A[i], i)$ from $H$ and insert $(A[2i], 2i)$ and $(A[2i + 1], 2i + 1)$ into H \emph{(Note: if $length[A]$ $<$ $2i$, do not insert either pair into $H$. If $length[A]$ $<$ $2i + 1$, insert only $(A[2i], 2i)$ into $H$)}. After $k - 1$ iterations, the $k$th smallest element is the smallest key in $H$. 
+		\newline
+		\textbf{Correctness for c:} !!NEEDS TO BE COMPLETED!!
+		\newline
+		\textbf{Runtime analysis for c:} If the original array has size $n$, buildheap on the original array is an $O(n)$ operation. After buildheap, we execute $k - 1$ operations of insert and remove on $H$, which has size $k$. In the worst case, one remove and two inserts will be called, which has a runtime of $3 \log k$. In general, the algorithm takes $n + (k - 1) \cdot 3 \log k$ time to execute, which means the algorithm is $O(n + k \log k)$.
 	\end{flushleft}
 \end{document}
