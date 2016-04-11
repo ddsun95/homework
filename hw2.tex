@@ -30,8 +30,8 @@
 		\newpage
 		\textbf{c)} Call buildheap on the array, ensuring the array is now a valid min-heap, call this heap $A$. Allocate another array of size $k$ for our second heap. Let $H$ be a heap containing a key-value pair, with its keys being the elements of $A$ and the values being the index at which the element is found. Initially, insert the smallest of $A$ along with the index of the smallest into $H$. At each iteration, remove the smallest value-index pair $(A[i], i)$ from $H$ and insert $(A[2i], 2i)$ and $(A[2i + 1], 2i + 1)$ into H \emph{(Note: if $length[A]$ $<$ $2i$, do not insert either pair into $H$. If $length[A]$ $<$ $2i + 1$, insert only $(A[2i], 2i)$ into $H$)}. After $k - 1$ iterations, the $k$th smallest element is the smallest key in $H$. 
 		\newline
-		\textbf{Correctness for c:} !!NEEDS TO BE COMPLETED!!
-		\newline
+		\textbf{Correctness for c:} By replacing the smallest in our new heap and inserting the children of the smallest from the original heap, all possible candidates for the next minimum are considered. Once the children are inserted, a new minimum is at the root, whether it was an element already in the heap, or a newly inserted element. Since the heap always reads the smallest in $O(1)$ time, repeating this process $k - 1$ times and reading the smallest after $k - 1$ iterations gives us the $k$th smallest value. 
+		
 		\textbf{Runtime analysis for c:} If the original array has size $n$, buildheap on the original array is an $O(n)$ operation. After buildheap, we execute $k - 1$ operations of insert and remove on $H$, which has size $k$. In the worst case, one remove and two inserts will be called, which has a runtime of $3 \log k$. In general, the algorithm takes $n + (k - 1) \cdot 3 \log k$ time to execute, which means the algorithm is $O(n + k \log k)$.
 		\newline
 		\item \textbf {\underline{Problem 2:}} Consider the following sorting algorithm for an array of numbers (Assume the size $n$ of the array is divisible by 3):
@@ -55,18 +55,43 @@
 		Since B, C, D are properly sorted segments and $\forall b \in B$, $\forall c \in C$, $\forall d \in D$, $b \leq c \leq d$, the algorithm properly sorts the array.
 		\newline
 		\textbf{Runtime analysis:} The algorithm divides the problem into three sub-problems each of size $\frac{2n}{3}$. At each level, there is no other work done so we'll add an $O(1)$ overhead. The recurrence can be written as $T(n) = 3T(\frac{2n}{3}) + O(1)$ or $T(n) = 3T(\frac{n}{1.5}) + O(1)$. We can now apply the master theorem. $a = 3$, $b = 1.5$, $f(n) = n^0$ $k = \log_{1.5}3$. $f(n) = O(n^{k - \epsilon})$ so $T(n) = \Theta(n^{log_{1.5}3})$.
-		\newpage
+		\newline
 		\item \textbf {\underline{Problem 3:}} KT, problem 1, p 246.
 		\newline
-		\textbf{Algorithm:} Call our two databases D1 and D2. Our divide and conquer algorithm will be called \textbf{findMedian}(D1, D2, lo1, hi1, lo2, hi2). The algorithm will initially be called in the manner \textbf{findMedian}(D1, D2, 1, N, 1, N), if N is the number of elements within each of the databases. The base case of the algorithm will checks if $lo1 == hi1$. If so, return $D1[lo1]$ as the median of the two databases. Otherwise if $lo2 == hi2$, return $D2[lo2]$ as the median of the two databases. 
+		\textbf{Algorithm:} Call our two databases D1 and D2. Our divide and conquer algorithm will be called \textbf{findMedian}(D1, D2, lo1, hi1, lo2, hi2), where $lo1$ and $hi1$ are lower and upper bounds for D1 and $lo2$ and $hi2$ are lower and upper bounds for D2. The algorithm will initially be called in the manner \textbf{findMedian}(D1, D2, 1, N, 1, N), if N is the number of elements within each of the databases. The base case of the algorithm will checks if $lo1 == hi1$ and if $lo2 == hi2$. This means we have two sub-lists containing 1 element each, so return $min(D1[lo1],\space D2[lo2])$ to find the median.
 		\newline
 		If the above comparisons do not hold, let $mid1$ = $\lfloor \frac{lo1 + hi1}{2} \rfloor$
 		and let $mid2$ = $\lfloor \frac{lo2 + hi2}{2} \rfloor$. Compare $D1[mid1]$ and $D2[mid2]$. If $D1[mid1] > D2[mid2]$, the median of the two lists lies within the lower half of D1 and in the upper half of D2, so call 
-		\textbf{findMedian}(D1, D2, lo1, mid1, mid2, hi2).
+		\textbf{findMedian}(D1, D2, lo1, mid1, mid2, hi2). 
 		\newline
 		If instead $D1[mid1] < D2[mid2]$ then the median lies of the two lists lies within the upper half of D1, and in the lower half of D2, then call \textbf{findMedian}(D1, D2, mid1, hi1, lo1, mid2). 
 		\newline
 		\newline
-		\textbf{Proof of correctness:} The median of both D1 and D2 must lie within one half of D1 or one half of D2. 
+		\textbf{Proof of correctness:} If we have two lists containing one element each, then the median would lie at the 1st position, which would be the minimum of the two lists. Otherwise, for databases each with more than 1 element, taking the median of two databases means that there are at least half the elements less than the higher median and half the elements greater than the lower median, suggesting that the median must lie between the lower and higher median. Therefore, it is necessary to discard half of each database until we reach one element for both databases. 
+		\newline
+		\newline
+		\textbf{Runtime analysis:} At each level, half the input size $n$ is discarded. If each database is n/2 in size, then $((n/2) / 2) + ((n/2) / 2) = n/2$. At each level, there are also number comparisons, done in $O(1)$ time. Thus, the recurrence can be written as $T(n) = T(n/2) + O(1)$. Using the master theorem, we can show that $T(n) = O(\log n)$.
+		\newline
+		\newpage
+		\item \textbf {\underline{Problem 4:}} Suppose you are choosing between the following 3 algorithms:
+		\begin{enumerate}
+			\item Algorithm $A$ solves problems by dividing them into 5 subproblems of half the size, recursively solving each subproblem, and then combining the solutions in linear time.
+			\item Algorithm $B$ solves problems of size n by recursively solving 2 subproblems of size $n-1$ and the combining the solutions in constant time.
+			\item Algorithm $C$ solves problems of size $n$ by dividing them into nine subproblems of size $n/3$, recursively solving each subproblem, and the combining the solution in $O(n^2)$ time.
+		\end{enumerate}
+		What are the running times of each of these algs. (in big-O notation), and which would you choose?
+		\newline
+		\textbf{Runtime analysis:} 
+		\newline
+		$\bullet$ The recurrence for (A) can be written as $T_a(n) = 5 \cdot T_a(n/2) + O(n)$
+		\newline
+		$k = \log_2 5$, $f(n) = n^1$, so $f(n) = O(n^{\log_2 5 - \epsilon})$ so
+		$T_a(n) = \Theta(n^{\log_2 5})$, thus $T_a(n) = O(n^{\log_2 5})$
+		\newline
+		$\bullet$ The recurrence for (B) can be written as $T_b(n) = 2 \cdot T_b(n - 1) + O(1)$
+		\newline
+		In this case, the master theorem does not apply here. However, analyzing this recurrence, we can see that $T_b(n) = 2T_b(n -1) + k$ = $2\cdot(2\cdot T_b(n - 2) + k) +k$ = $2 \cdot (2 \cdot (2 \cdot T_b(n - 3) +k) +k) +k$ = \newline 
+		$2 \cdot (2 \dots (T_b(n - n) +k)\dots +k) +k$. Summing over the terms, we have $2^{n - 1} + (n - 1)k$. Thus, we can conclude that the algorithm runs in $O(2^{n})$ time. \newline
+		$\bullet$
 	\end{flushleft}
 \end{document}
