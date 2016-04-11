@@ -92,6 +92,9 @@
 		\newline
 		In this case, the master theorem does not apply here. However, analyzing this recurrence, we can see that $T_b(n) = 2T_b(n -1) + k$ = $2\cdot(2\cdot T_b(n - 2) + k) +k$ = $2 \cdot (2 \cdot (2 \cdot T_b(n - 3) +k) +k) +k$ = \newline 
 		$2 \cdot (2 \dots (T_b(n - n) +k)\dots +k) +k$. Summing over the terms, we have $2^{n - 1} + (n - 1)k$. Thus, we can conclude that the algorithm runs in $O(2^{n})$ time. \newline
-		$\bullet$
+		$\bullet$ The recurrence for (C) can be written as $T_c(n) = 9T(n/3) + n^2$. In this case $k = 2$, $p = 0$ so $f(n) = \Theta(n^2)$, so $T_c(n) = \Theta(n^2 \log^{p + 1} n)$, thus $T_c(n) = \Theta(n^2 \log n)$ so $T_c(n) = O(n^2 \log n)$. 
+		\newline
+		\newline
+		Since algorithm B is an exponential, it grows faster than A and C, and we can conclude it is not the most optimal algorithm. We compare $O(n^{\log_2 5})$ with $O(n^2 \log n)$. Note that $\log_2 5$ $\approx$ 2.31. So, $O(n^{\log_2 5})$ = $O(n^2n^{0.31})$. We compare $n^{0.31}$ to $\log n$. $$\lim_{n\to\infty} \frac{\log n}{n^{0.31}} = 0$$. Therefore, algorithm C is the most optimal algorithm. 
 	\end{flushleft}
 \end{document}
