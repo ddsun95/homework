@@ -54,7 +54,7 @@
 		\newline
 		Since B, C, D are properly sorted segments and $\forall b \in B$, $\forall c \in C$, $\forall d \in D$, $b \leq c \leq d$, the algorithm properly sorts the array.
 		\newline
-		\textbf{Runtime analysis:} The algorithm divides the problem into three sub-problems each of size $\frac{2n}{3}$. At each level, there is no other work done so we'll add an $O(1)$ overhead. The recurrence can be written as $T(n) = 3T(\frac{2n}{3}) + O(1)$ or $T(n) = 3T(\frac{n}{1.5}) + O(1)$. We can now apply the master theorem. $a = 3$, $b = 1.5$, $f(n) = n^0$ $k = \log_{1.5}3$. $f(n) = O(n^{k - \epsilon})$ so $T(n) = \Theta(n^{log_{1.5}3})$.
+		\textbf{Runtime analysis:} The algorithm divides the problem into three sub-problems each of size $\frac{2n}{3}$. At each level, there is no other work done so we'll add an $O(1)$ overhead. The recurrence can be written as $T(n) = 3T(\frac{2n}{3}) + O(1)$ or $T(n) = 3T(\frac{n}{1.5}) + O(1)$. We can now apply the master theorem. $a = 3$, $b = 1.5$, $f(n) = n^0$, $k = \log_{1.5}3$. $f(n) = O(n^{k - \epsilon})$ so $T(n) = \Theta(n^{log_{1.5}3})$.
 		\newline
 		\item \textbf {\underline{Problem 3:}} KT, problem 1, p 246.
 		\newline
@@ -72,7 +72,6 @@
 		\newline
 		\textbf{Runtime analysis:} At each level, half the input size $n$ is discarded. If each database is n/2 in size, then $((n/2) / 2) + ((n/2) / 2) = n/2$. At each level, there are also number comparisons, done in $O(1)$ time. Thus, the recurrence can be written as $T(n) = T(n/2) + O(1)$. Using the master theorem, we can show that $T(n) = O(\log n)$.
 		\newline
-		\newpage
 		\item \textbf {\underline{Problem 4:}} Suppose you are choosing between the following 3 algorithms:
 		\begin{enumerate}
 			\item Algorithm $A$ solves problems by dividing them into 5 subproblems of half the size, recursively solving each subproblem, and then combining the solutions in linear time.
@@ -81,6 +80,7 @@
 		\end{enumerate}
 		What are the running times of each of these algs. (in big-O notation), and which would you choose?
 		\newline
+		\newpage
 		\textbf{Runtime analysis:} 
 		\newline
 		$\bullet$ The recurrence for (A) can be written as $T_a(n) = 5 \cdot T_a(n/2) + O(n)$
@@ -91,10 +91,75 @@
 		$\bullet$ The recurrence for (B) can be written as $T_b(n) = 2 \cdot T_b(n - 1) + O(1)$
 		\newline
 		In this case, the master theorem does not apply here. However, analyzing this recurrence, we can see that $T_b(n) = 2T_b(n -1) + k$ = $2\cdot(2\cdot T_b(n - 2) + k) +k$ = $2 \cdot (2 \cdot (2 \cdot T_b(n - 3) +k) +k) +k$ = \newline 
-		$2 \cdot (2 \dots (T_b(n - n) +k)\dots +k) +k$. Summing over the terms, we have $2^{n - 1} + (n - 1)k$. Thus, we can conclude that the algorithm runs in $O(2^{n})$ time. \newline
+		$2 \cdot (2 \dots (T_b(n - n) +k)\dots +k) +k$. Notice that by expanding the recurrence, there are $n - 1$ products of $2s$. Since the $k$ values are constants, $2^{n-1}$ is the dominating term. Thus, we can conclude that the algorithm runs in $O(2^{n})$ time. \newline
 		$\bullet$ The recurrence for (C) can be written as $T_c(n) = 9T(n/3) + n^2$. In this case $k = 2$, $p = 0$ so $f(n) = \Theta(n^2)$, so $T_c(n) = \Theta(n^2 \log^{p + 1} n)$, thus $T_c(n) = \Theta(n^2 \log n)$ so $T_c(n) = O(n^2 \log n)$. 
 		\newline
 		\newline
 		Since algorithm B is an exponential, it grows faster than A and C, and we can conclude it is not the most optimal algorithm. We compare $O(n^{\log_2 5})$ with $O(n^2 \log n)$. Note that $\log_2 5$ $\approx$ 2.31. So, $O(n^{\log_2 5})$ = $O(n^2n^{0.31})$. We compare $n^{0.31}$ to $\log n$. $$\lim_{n\to\infty} \frac{\log n}{n^{0.31}} = 0$$. Therefore, algorithm C is the most optimal algorithm. 
+		
+		\item \textbf {\underline{Problem 5:}}
+
+		\item
+		(a) Compute the FFT of the polynomial $1+2x-x^3$ by computing
+		the 4 dimensional FFT matrix and multiplying it with the
+		coefficient vector $[1\; 2\; 0\; -\!1]^\top$.
+		
+		The FFT matrix uses powers of a root of unity.
+		First determine the appropriate root of unity.
+		\item
+		(b) Now compute the inverse FFT of the vector $[1\; 2\; 0\; -\!1]^\top$.
+		Again find the appropriate matrix and multiply this matrix
+		by the vector.
+		\item
+		(c) Check that the two matrices used above are inverses of each
+		other.
+		\newline\newline
+		The polynomial has four roots of unity, which are $e^{\frac{0 \cdot 2\pi i}{4}}$, $e^{\frac{1 \cdot 2\pi i}{4}}$, $e^{\frac{2 \cdot 2\pi i}{4}}$, and $e^{\frac{3 \cdot 2\pi i}{4}}$. Let $\omega = e^{\frac{1 \cdot 2\pi i}{4}} = e^{\frac{\pi i}{2}}$. 
+		
+		The FFT matrix can be expressed as \newline
+		$\begin{bmatrix}
+			1 & 1 & 1 & 1 \\
+			1 & \omega & \omega^2 & \omega^3 \\
+			1 & \omega^2 & \omega^4 & \omega^6 \\
+			1 & \omega^3 & \omega^6 & \omega^9 \\
+		\end{bmatrix}$
+		=
+		$\begin{bmatrix}
+			1 & 1 & 1 & 1 \\
+			1 & i   & i^2 & i^3 \\
+			1 & i^2 & i^4 & i^6 \\
+			1 & i^3 & i^6 & i^9 \\
+		\end{bmatrix}$
+		= 
+		$\begin{bmatrix}
+			1 & 1 & 1 & 1 \\
+			1 & i   & -1 & -i \\
+			1 & -1 & 1 & -1 \\
+			1 & -i & -i & i \\
+		\end{bmatrix}$
+		\newline
+		(a) We multiply this matrix by the coefficient vector by the coefficient vector to get the FFT. 	
+		$\begin{bmatrix}
+			1 & 1 & 1 & 1 \\
+			1 & i   & -1 & -i \\
+			1 & -1 & 1 & -1 \\
+			1 & -i & -i & i \\
+		\end{bmatrix}$
+		$\begin{bmatrix}
+			1\\
+			2\\
+			0\\
+		   -1\\
+		\end{bmatrix}$
+		=
+		$\begin{bmatrix}
+			2\\
+			1 + 3i\\
+			0\\
+			1 - 3i\\
+		\end{bmatrix}$
+		(b) The inverse Fourier matrix can be expressed as 
+		
+		
 	\end{flushleft}
 \end{document}
