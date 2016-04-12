@@ -135,7 +135,7 @@
 			1 & 1 & 1 & 1 \\
 			1 & i   & -1 & -i \\
 			1 & -1 & 1 & -1 \\
-			1 & -i & -i & i \\
+			1 & -i & -1 & i \\
 		\end{bmatrix}$
 		\newline
 		(a) We multiply this matrix by the coefficient vector by the coefficient vector to get the FFT. 	
@@ -143,7 +143,7 @@
 			1 & 1 & 1 & 1 \\
 			1 & i   & -1 & -i \\
 			1 & -1 & 1 & -1 \\
-			1 & -i & -i & i \\
+			1 & -i & -1 & i \\
 		\end{bmatrix}$
 		$\begin{bmatrix}
 			1\\
@@ -158,8 +158,77 @@
 			0\\
 			1 - 3i\\
 		\end{bmatrix}$
+		\newline
 		(b) The inverse Fourier matrix can be expressed as 
-		
+		\newline
+		$f_4^{-1} = \frac{1}{4}$
+		$\begin{bmatrix}
+			1 & 	 1 & 		1 & 		1  \\
+			1 & \omega^{-1} & \omega^{-2} & \omega^{-3}   \\
+			1 & \omega^{-2} & \omega^{-4} & \omega^{-6} \\
+			1 & \omega^{-3} & \omega^{-6} & \omega^{-9} \\
+		\end{bmatrix}$
+		=
+		$\frac{1}{4}$
+		$\begin{bmatrix}
+			1 & 1 & 1 & 1 \\
+			1 & -i  & -1 & i \\
+			1 & -1 & 1 & -1 \\
+			1 & i & -1 & -i \\
+		\end{bmatrix}$
+		\newpage
+		We multiply this matrix with the coefficient vector.
+		\newline
+		$\frac{1}{4}$
+		$\begin{bmatrix}
+			1 & 1 & 1 & 1 \\
+			1 & -i  & -1 & i \\
+			1 & -1 & 1 & -1 \\
+			1 & i & -1 & -i \\
+		\end{bmatrix}$
+		$\begin{bmatrix}
+			1\\
+			2\\
+			0\\
+			-1\\
+		\end{bmatrix}$	
+		=
+		$\begin{bmatrix}
+			\frac{1}{2}\\
+			\\
+			\frac{1-3i}{4}\\
+			\\
+			0\\
+			\\
+			\frac{1+3i}{4}\\
+		\end{bmatrix}$	
+		\newline
+		Thus obtaining the inverse FFT of the vector. 
+		\newline
+		(c) To check if the two 4x4 matrices are inverses of each other, we multiply them together and check if the product is the identity matrix. In this case \newline
+		$\begin{bmatrix}
+			1 & 1 & 1 & 1 \\
+			1 & i   & -1 & -i \\
+			1 & -1 & 1 & -1 \\
+			1 & -i & -1 & i \\
+		\end{bmatrix}$
+		$\begin{bmatrix}
+			1/4 & 1/4 & 1/4 & 1/4 \\
+			1/4 & -i/4  & -1/4 & i/4 \\
+			1/4 & -1/4 & 1/4 & -1/4 \\
+			1/4 & i/4 & -1/4 & -i/4 \\
+		\end{bmatrix}$
+		=
+		$\begin{bmatrix}
+			1 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 0 \\
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 1 \\
+		\end{bmatrix}$
+		\newline
+		Thus, we can conclude that the matrices are indeed inverses.
+		\item \textbf {\underline{Problem 6:}} Extra Credit
+		\newline
 		
 	\end{flushleft}
 \end{document}
