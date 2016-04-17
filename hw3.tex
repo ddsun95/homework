@@ -91,9 +91,15 @@
 	find out whether there is an index $i$ for which $A[i] = i$. Give a
 	divide-and-conquer algorithm that runs in time $O(\log n).$
 	\newline
+	\newline
 	\textbf{Algorithm:} Our algorithm will be called \textbf{findIndex}$(A, low, high)$. It will be initially called in the following manner \textbf{findIndex}$(A, 1, N)$ where A is the array, and $N$ is $length[A]$. The first step of the algorithm is to check if $low > high$. If such is the case, return $-1$ since there exists no $i$ for which $A[i] = i$. Otherwise, let $mid = \lfloor \frac{low + high}{2} \rfloor$ and check if $A[mid] == mid$. If the condition holds, return $mid$. Otherwise, if $A[mid] > mid$ check the left sub-array for $i$ by calling \textbf{findIndex}$(A, low, mid - 1)$. If $A[mid] < mid$ check the right sub-array for $i$ by calling \textbf{findIndex}$(A, mid + 1, high)$. 
 	\newline
 	\newline
-	\textbf{Proof of correctness:} If the low bound is greater than the higher bound, then there is no index in either the left sub-array or right sub-array in which $A[i] = i$, therefore it is appropriate to return -1 to indicate no possible index exists. 
+	\textbf{Proof of correctness:} If the low bound is greater than the higher bound, then there is no index in either the left sub-array or right sub-array in which $A[i] = i$, therefore it is appropriate to return -1 to indicate no possible index exists. However if the middle element is equal to the index, then we have found a satisfactory index and we return it. However, if the middle element is greater than the middle index, then there can exist no such index within the right sub-array since every number in the right sub-array must be at least $A[mid] - mid$ greater than its index. Therefore a potential index must lie within the left sub-array, so the algorithm recurs on the left. If the middle element is less than the middle index, then there can exist no such $i$ in the left sub-array since is at least $mid - A[mid]$ less than the index. Therefore an appropriate index must lie within the right sub-array, so the algorithm recurs on the right. 
+	\newline
+	\newline
+	\textbf{Proof of runtime: }By recurring on the left sub-array or the right sub-array, half the array is discarded. The algorithm also has a constant number of array element comparisons at each level, and this is done in constant time. Thus the recurrence can be written as $T(N) = 2T(N / 2) + O(1)$. Using the master theorem, we can show that $T(N) = O(\log N)$.
+	
+	
 \end{flushleft}
 \end{document}
