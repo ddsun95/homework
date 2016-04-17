@@ -8,17 +8,89 @@
 	Homework 3	\newline
 	
 	\item \textbf {\underline{Problem 1:}} \newline
-	(a) Show by induction that $(H_k)^2=2^k I_k$, where
+	\textbf{1a)} Show by induction that $(H_k)^2=2^k I_k$, where
 	$I_k$ is the identity matrix of dimension $2^k$. 
-	\newline
-	\textbf {\underline {Proof by Induction on k:}} 
 	\newline
 	\newline
 	\textbf {Base Case:} $k = 0$. Then $H_0^2$ = [1][1] = [1] = $2^0 \cdot I_0$.
 	\newline
 	\newline
 	\textbf {Induction Step:} Let $n \geq 0$ and $0 \leq n < k$. Suppose that $(H_n)^2 = 2^n I_n$, where $I_n$ is the identity matrix of dimension $2^n$. 
+	\newline
+	Then $(H_k)^2$ = 	
+	$\begin{bmatrix}
+		H_{k - 1} &  H_{k - 1} \\
+		H_{k - 1} & -H_{k - 1}
+	\end{bmatrix}$
+	$\begin{bmatrix}
+		H_{k - 1} &  H_{k - 1} \\
+		H_{k - 1} & -H_{k - 1}
+	\end{bmatrix}$
+	=
+	$\begin{bmatrix}
+		2 \cdot H_{k - 1}^2 &  H_{k - 1}^2 - H_{k - 1}^2  \\
+		H_{k - 1}^2 - H_{k - 1}^2 & 2 \cdot H_{k - 1}^2
+	\end{bmatrix}$	
+	\newline
+	\newline
+	Let $I_{k - 1}$ denote the identity matrix of dimension $2^{k - 1}$ and $0_{k - 1}$ denote the 0 matrix of dimension $2^{k - 1}$.
+	By the induction hypothesis, $2(H_{k - 1})^2$ can be simplified as $2 \cdot 2^{k - 1} I_{k - 1}$. $H_{k - 1}^2 - H_{k - 1}^2$ can be simplified down to $0_{k - 1}$ since the difference of any matrix with itself is the 0 matrix. Thus $(H_k)^2$ can be simplified as
+	\newline
+	\newline
+	$\begin{bmatrix}
+		2 \cdot 2^{k - 1} I_{k - 1} & 0_{k - 1} \\
+		0_{k - 1} & 2 \cdot 2^{k - 1} I_{k - 1}
+	\end{bmatrix}$	
+	=
+	$\begin{bmatrix}
+		2^k I_{k - 1} & 0_{k - 1} \\
+		0_{k - 1} & 2^k I_{k - 1}
+	\end{bmatrix}$		
+	= $2^k$
+	$\begin{bmatrix}
+		I_{k - 1} & 0_{k - 1} \\
+		0_{k - 1} & I_{k - 1}
+	\end{bmatrix}$	
+	\newline
+	Notice that two identity matrices of dimensions $k - 1 \times k- 1$ lie within the main diagonal, and long the antidiagonal are two 0 matrices of dimensions $k - 1 \times k - 1$. This means that the matrix itself the matrix itself is the identity matrix with dimensions $2^k \times 2^k$. 
+	\newline
+	Thus, 
+	$2^k$
+	$\begin{bmatrix}
+		I_{k - 1} & 0_{k - 1} \\
+		0_{k - 1} & I_{k - 1}
+	\end{bmatrix}$	
+	=
+	$2^k I_k$ as required.
+	\newline
+	\newline
+	\textbf {1b)} Note that Hadamard matrices are symmetric, i.e.  $H_k=H_k^\top$. 
+	Thus by the above, $H_k H_k^\top = 2^k I_k$ as well. 
+	Use this fact for deriving a formula for the dot product
+	between the $i$-th and $j$-th row of $H_k$, for $1\le i,j\le 2^k$.
+	\newline
 	
+	The dot product between the $i$-th and $j$-th is 0 whenever $i \neq j$ and the sum of the squares of all the matrix entries whenever $i = j$. In other words, the dot product between any two rows $i$ and $j$ is defined by the following summation:
+	\newline
 	
+	Dot product between the $i$th and $j$th row of $H$ = 
+	$\begin{cases} 
+		i \neq j & 0 \\
+		i    = j & $$\sum_{j=1}^{2^k} H_{ij}^2$$
+	\end{cases}$
+
+	\newpage
+	\item \textbf {\underline{Problem 2:}} Consider the Coin Changing problem with the European coin set:
+	\begin{displaymath}
+	\{ 1, 2, 5, 10, 20, 50, 100, 200 \}.
+	\end{displaymath}
+	Prove that the Cashier's Algorithm is optimal given the above set of coins.
+	Use the same proof method that was used for the American coin set in class.
+	\newpage
+	\item \textbf {\underline{Problem 3:}} Given a sorted array of distinct integers $A[1, . . . , n]$, you want to
+	find out whether there is an index $i$ for which $A[i] = i$. Give a
+	divide-and-conquer algorithm that runs in time $O(\log n).$
+	\newline
+	\textbf{Algorithm: } Our algorithm will be called findIndex(A, low, high).
 \end{flushleft}
 \end{document}
