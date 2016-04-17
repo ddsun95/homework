@@ -70,13 +70,13 @@
 	between the $i$-th and $j$-th row of $H_k$, for $1\le i,j\le 2^k$.
 	\newline
 	
-	The dot product between the $i$-th and $j$-th is 0 whenever $i \neq j$ and the sum of the squares of all the matrix entries whenever $i = j$. In other words, the dot product between any two rows $i$ and $j$ is defined by the following summation:
+	The dot product between the $i$-th and $j$-th is 0 whenever $i \neq j$ and the sum of the squares of all the matrix entries whenever $i = j$. In a Hadamard Matrix, the sum of the squares of all the entries for a $2^k \times 2^k$ would be $2^k$ sums of 1s. In other words, the dot product between any two rows $i$ and $j$ is defined by the following summation:
 	\newline
 	
 	Dot product between the $i$th and $j$th row of $H$ = 
 	$\begin{cases} 
 		i \neq j & 0 \\
-		i    = j & $$\sum_{j=1}^{2^k} H_{ij}^2$$
+		i    = j & $$\sum_{j=1}^{2^k} H_{ij}^2 = \sum_{j=1}^{2^k} 1 = 2^k$$
 	\end{cases}$
 
 	\newpage
@@ -91,6 +91,9 @@
 	find out whether there is an index $i$ for which $A[i] = i$. Give a
 	divide-and-conquer algorithm that runs in time $O(\log n).$
 	\newline
-	\textbf{Algorithm: } Our algorithm will be called findIndex(A, low, high).
+	\textbf{Algorithm:} Our algorithm will be called \textbf{findIndex}$(A, low, high)$. It will be initially called in the following manner \textbf{findIndex}$(A, 1, N)$ where A is the array, and $N$ is $length[A]$. The first step of the algorithm is to check if $low > high$. If such is the case, return $-1$ since there exists no $i$ for which $A[i] = i$. Otherwise, let $mid = \lfloor \frac{low + high}{2} \rfloor$ and check if $A[mid] == mid$. If the condition holds, return $mid$. Otherwise, if $A[mid] > mid$ check the left sub-array for $i$ by calling \textbf{findIndex}$(A, low, mid - 1)$. If $A[mid] < mid$ check the right sub-array for $i$ by calling \textbf{findIndex}$(A, mid + 1, high)$. 
+	\newline
+	\newline
+	\textbf{Proof of correctness:} If the low bound is greater than the higher bound, then there is no index in either the left sub-array or right sub-array in which $A[i] = i$, therefore it is appropriate to return -1 to indicate no possible index exists. 
 \end{flushleft}
 \end{document}
