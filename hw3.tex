@@ -86,6 +86,38 @@
 	\end{displaymath}
 	Prove that the Cashier's Algorithm is optimal given the above set of coins.
 	Use the same proof method that was used for the American coin set in class.
+	
+	\begin{center}
+		\begin{tabular}{ | l | l | p{8cm} | p{6cm} |}
+			\hline
+			$k$ & $C_k$ & Optimal solutions must satisfy & Max value ($C_1 \dots C_{k - 1}$) \\ \hline
+			1 & 1 & $C_1 \leq 1$ & - \\
+			
+			\hline
+			2 & 2 & $C_1 + C_2 \leq 2$ & 1 ($1 \cdot C_1$) \\
+			
+			\hline
+			3 & 5 & $C_3 \leq 1$ & 4 ($2\cdot C_2$) \\
+			
+			\hline
+			4 & 10 & $C_4 \leq 1$ & 9 ($C_3 + 2\cdot C_2$) \\
+			
+			\hline
+			5 & 20 & $C_5 + C_4 \leq 2$ & 19 ($C_4 + C_3 + 2\cdot C_2$) \\
+			
+			\hline
+			6  & 50 & $C_6 \leq1$ & 49 ($2\cdot C_5 + C_3 + 2\cdot C_2$) \\
+			
+			\hline
+			7 & 100 & $C_7 \leq 1$ & 99 ($C_6 + 2\cdot C_5 + C_4 + C_3 + 2 \cdot C_2$) \\
+			
+			\hline 
+			8 & 200 & Unbounded & 199 ($C_7 + C_6 + 2\cdot C_5 + C_4 + C_3 + 2 \cdot C_2$)\\
+			
+			\hline
+		\end{tabular}
+	\end{center}
+	
 	\newpage
 	\item \textbf {\underline{Problem 3:}} Given a sorted array of distinct integers $A[1, . . . , n]$, you want to
 	find out whether there is an index $i$ for which $A[i] = i$. Give a
@@ -125,7 +157,7 @@
 	(i.e. that the obtained partition has the smallest possible number of segments).
 	\newline
 	\newline
-	\textbf{Algorithm: } This algorithm will return a set of containing pairs of indexes. Each pair represents a partition of the array $A$.
+	\textbf{Algorithm: } This algorithm will return a set of containing pairs of indexes.
 	\newline
 	\newline
 	\underline{partition(A):}
@@ -134,17 +166,22 @@
 	$2)\ \ begin = 1$	\newline
 	$3)\ \ partitions$ = $\lbrace \rbrace$
 	\newline
-	$4)\ \ $for $i = 1$ to $length[A] - 1$ \newline
+	$4)\ \ $for $i = 1$ to $length[A]$ \newline
 	$5)\ \qquad$ if $sum + A[i] \leq M$   \newline
 	$6)\ \qquad\qquad$ $sum \leftarrow sum + A[i]$ \newline
 	$7)\ \qquad$ else \newline
-	$8)\ \qquad\qquad$ $partitions$ $\cup$ ($begin$, $i - 1$) \newline
-	$9)\ \qquad\qquad$ $begin = i$ \newline
-	$10) \qquad\qquad$ $sum = 0$ \newline
+	$8)\ \qquad\qquad$ $partitions \leftarrow partitions$ $\cup$ $\lbrace$($begin$, $i - 1$)$\rbrace$ \newline
+	$9)\ \qquad\qquad$ $begin \leftarrow i$ \newline
+	$10) \qquad\qquad$$sum \leftarrow 0$ \newline
 	$11)\ $end for \newline
-	$12)\ $if $sum + A[length[A]] \leq M$ \newline
-	$13)\qquad partitions$ $\cup$ ($begin$, $length[A]$)  \newline
-	$14)\ $ else \newline
-	$15)\qquad partitions$ $\cup$ $\lbrace$($begin$, $length[A - 1]$)$\rbrace$ $\cup$ $\lbrace$($length[A]$, $length[A]$)$\rbrace$\newline
+	$13)\ partitions\leftarrow partitions$ $\cup$ $\lbrace$($begin$, $length[A]$)$\rbrace$  \newline
+	$14)$ return $partitions$
+	\newline
+	\newline
+	\textbf{Explanation: }Make one scan through the array. If the current array element added to the previous sum does not exceed M, add it to the sum and keep scanning. Otherwise, append the pair of the begin index and one less than the current index to the set of partitions, reset the sum and begin counter to 0 and keep scanning. At the end, return the set of partitions. 
+	\newline
+	\newline
+	\textbf{Proof solution is optimal: }Assume towards a contradiction that an optimal solution partitions the array into fewer segments than the greedy algorithm. Since the greedy algorithm matches the highest possible sum (equal to or below $M$) before appending a pair of indexes to the set of partitions, one of the segments in the optimal solution must have the sum of its elements greater than $M$, which by the problem is not allowed, thus our greedy partitions the array into the fewest segments not exceeding $M$.
+
 	\end{flushleft}
 \end{document}
