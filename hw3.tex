@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage{fullpage,amsthm,amsfonts,amssymb,epsfig,amsmath,soul}
+\usepackage{fullpage,amsthm,amsfonts,amssymb,epsfig,amsmath,soul,parskip,alltt}
 
 \begin{document}
 \begin{flushleft}
@@ -99,7 +99,52 @@
 	\newline
 	\newline
 	\textbf{Proof of runtime: }By recurring on the left sub-array or the right sub-array, half the array is discarded. The algorithm also has a constant number of array element comparisons at each level, and this is done in constant time. Thus the recurrence can be written as $T(N) = 2T(N / 2) + O(1)$. Using the master theorem, we can show that $T(N) = O(\log N)$.
-	
-	
-\end{flushleft}
+	\newpage
+	\textbf{\underline{Problem 4: }}Suppose that you want to multiply the two polynomials $x + 1$ and $x^2 + 1$
+	using the FFT. 
+	\begin{enumerate}
+		\item 
+		Choose an appropriate power of two (the FFT dimension), find the FFT of the
+		two sequences, multiply the resulting sequence
+		componentwise, and then compute the
+		inverse FFT to get the coefficients of the product polynomial.
+		Do the transforms by using matrix vector products
+		as in problem 5 of the previous homework.
+		\item
+		Explicitly compute the product of your polynomial and check
+		your result.
+	\end{enumerate}
+	\newpage
+	\textbf{\underline{Problem 5: }}Given an array of positive integers $A[1,\dots,n]$, and an integer
+	$M>0$, you want to partition the array into segments $A[1,\dots,i_1],\
+	A[i_1+1,\dots,i_2],\ \dots,\ A[i_{k-1}+1,\dots,i_k]$, so that the sum of
+	integers in every segment does not exceed $M$, while minimizing the
+	number of segments $k$. You can assume that $M\geq A[i]$ for all $i$
+	(which guarantees that such a partition exists). Design an $O(n)$ greedy
+	algorithm for solving this problem and prove that it is optimal
+	(i.e. that the obtained partition has the smallest possible number of segments).
+	\newline
+	\newline
+	\textbf{Algorithm: } This algorithm will return a set of containing pairs of indexes. Each pair represents a partition of the array $A$.
+	\newline
+	\newline
+	\underline{partition(A):}
+	\newline
+	$1)\ \ sum = 0$ 	\newline
+	$2)\ \ begin = 1$	\newline
+	$3)\ \ partitions$ = $\lbrace \rbrace$
+	\newline
+	$4)\ \ $for $i = 1$ to $length[A] - 1$ \newline
+	$5)\ \qquad$ if $sum + A[i] \leq M$   \newline
+	$6)\ \qquad\qquad$ $sum \leftarrow sum + A[i]$ \newline
+	$7)\ \qquad$ else \newline
+	$8)\ \qquad\qquad$ $partitions$ $\cup$ ($begin$, $i - 1$) \newline
+	$9)\ \qquad\qquad$ $begin = i$ \newline
+	$10) \qquad\qquad$ $sum = 0$ \newline
+	$11)\ $end for \newline
+	$12)\ $if $sum + A[length[A]] \leq M$ \newline
+	$13)\qquad partitions$ $\cup$ ($begin$, $length[A]$)  \newline
+	$14)\ $ else \newline
+	$15)\qquad partitions$ $\cup$ $\lbrace$($begin$, $length[A - 1]$)$\rbrace$ $\cup$ $\lbrace$($length[A]$, $length[A]$)$\rbrace$\newline
+	\end{flushleft}
 \end{document}
