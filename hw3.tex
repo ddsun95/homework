@@ -69,14 +69,14 @@
 	Use this fact for deriving a formula for the dot product
 	between the $i$-th and $j$-th row of $H_k$, for $1\le i,j\le 2^k$.
 	\newline
-	
-	The dot product between the $i$-th and $j$-th is 0 whenever $i \neq j$ and the sum of the squares of all the matrix entries whenever $i = j$. In a Hadamard Matrix, the sum of the squares of all the entries for a $2^k \times 2^k$ would be $2^k$ sums of 1s. In other words, the dot product between any two rows $i$ and $j$ is defined by the following summation:
+	\newline
+	Since $H_k H_k^\top = 2^k I_k$, finding the dot product between the $i$th and $j$th row is equivalent to finding the dot product between the $i$th and $j$th row is equivalent to finding the dot product between the $i$th and $j$th column of $H_k$. By the previous proof, we showed that $H_k H_k^\top = 2^k I_k$, thus the only time when dotting the $i$th row and $j$th column yields a non-zero entry is when $i = j$. More specifically dotting the $i$th row and $j$th column of $H_k$ yields $2^k$ whenever $i = j$. In other words, the dot product between any two rows $i$ and $j$ is defined by the following summation:
 	\newline
 	
 	Dot product between the $i$th and $j$th row of $H$ = 
 	$\begin{cases} 
 		i \neq j & 0 \\
-		i    = j & $$\sum_{j=1}^{2^k} H_{ij}^2 = \sum_{j=1}^{2^k} 1 = 2^k$$
+		i    = j & 2^k$$
 	\end{cases}$
 
 	\newpage
@@ -86,6 +86,8 @@
 	\end{displaymath}
 	Prove that the Cashier's Algorithm is optimal given the above set of coins.
 	Use the same proof method that was used for the American coin set in class.
+	
+	Suppose change is $x$ and that $C_{k} \leq x < C_{k + 1}$. Any optimal solution will take $C_k$. Otherwise there must be a sequence of $C_1 \dots C_{k -1}$ coins that add up to $x$. The table below indicates that if change is $x$, then there exists no possible way to make change from the set $C_1 \dots C_{k - 1}$ without breaking the optimality condition. Thus, coin $C_k$ must be taken and we can make change for $x - C_k$ by the same principle. The table sets the conditions for the optimal solution. 
 	
 	\begin{center}
 		\begin{tabular}{ | l | l | p{8cm} | p{6cm} |}
@@ -134,18 +136,158 @@
 	\newpage
 	\textbf{\underline{Problem 4: }}Suppose that you want to multiply the two polynomials $x + 1$ and $x^2 + 1$
 	using the FFT. 
-	\begin{enumerate}
-		\item 
-		Choose an appropriate power of two (the FFT dimension), find the FFT of the
-		two sequences, multiply the resulting sequence
-		componentwise, and then compute the
-		inverse FFT to get the coefficients of the product polynomial.
-		Do the transforms by using matrix vector products
-		as in problem 5 of the previous homework.
-		\item
-		Explicitly compute the product of your polynomial and check
-		your result.
-	\end{enumerate}
+
+	\item 
+	(a) Choose an appropriate power of two (the FFT dimension), find the FFT of the
+	two sequences, multiply the resulting sequence
+	componentwise, and then compute the
+	inverse FFT to get the coefficients of the product polynomial.
+	Do the transforms by using matrix vector products
+	as in problem 5 of the previous homework.
+	\item
+	(b) Explicitly compute the product of your polynomial and check
+	your result.
+	
+	\textbf{part a:} Since the product of the two polynomials will result in an $x^3$ term, we want to find the fourth root of unity. In this case, our coefficient vectors will have size of $4 \times 1$ and our FFT matrix will be of size $4 \times 4$. Then our $\omega = e^{\frac{\pi i}{2}} = i$. 
+	\newline
+	$1 + x$ can be represented by the column vector 
+	$\begin{bmatrix}
+		1 \\
+		1 \\
+		0 \\
+		0
+	\end{bmatrix}$
+	and $1 + x^2$ can be represented by 
+	$\begin{bmatrix}
+		1 \\
+		0 \\
+		1 \\
+		0
+	\end{bmatrix}$
+	\newline
+	Multiplying the coefficient vectors with the FFT matrix, we obtain \newline
+	$\begin{bmatrix}
+		1 & 1 & 1 & 1 \\
+		1 & i   & i^2 & i^3 \\
+		1 & i^2 & i^4 & i^6 \\
+		1 & i^3 & i^6 & i^9 \\
+	\end{bmatrix}$
+	$\begin{bmatrix}
+		1 \\
+		1 \\
+		0 \\
+		0
+	\end{bmatrix}$
+	=
+	$\begin{bmatrix}
+		2 \\
+		1 + i \\
+		1 + i^2 \\
+		1 + i^3
+	\end{bmatrix}$
+	and
+	$\begin{bmatrix}
+		1 & 1 & 1 & 1 \\
+		1 & i   & i^2 & i^3 \\
+		1 & i^2 & i^4 & i^6 \\
+		1 & i^3 & i^6 & i^9 \\
+	\end{bmatrix}$
+	$\begin{bmatrix}
+		1 \\
+		0 \\
+		1 \\
+		0
+	\end{bmatrix}$
+	= 
+	$\begin{bmatrix}
+		2 \\
+		1 + i^2 \\
+		1 + i^4 \\
+		1 + i^6
+	\end{bmatrix}$
+	\newline
+	Multiplying the two coefficient vectors component wise, we obtain
+	
+	$\begin{bmatrix}
+		2 \\
+		1 + i \\
+		1 + i^2 \\
+		1 + i^3
+	\end{bmatrix}$
+	$\begin{bmatrix}
+		2 \\
+		1 + i^2 \\
+		1 + i^4 \\
+		1 + i^6
+	\end{bmatrix}$
+	=
+	$\begin{bmatrix}
+		4 \\
+		0 \\
+		0 \\
+		0
+	\end{bmatrix}$
+	\newline
+	We multiply this vector with the inverse FFT matrix to obtain the coefficient matrix for the product
+	\newline
+	$\frac{1}{4}$
+	$\begin{bmatrix}
+		1 & 1 & 1 & 1 \\
+		1 & i   & i^2 & i^3 \\
+		1 & i^2 & i^4 & i^6 \\
+		1 & i^3 & i^6 & i^9 \\
+	\end{bmatrix}$
+	$\begin{bmatrix}
+		4 \\
+		0 \\
+		0 \\
+		0
+	\end{bmatrix}$
+	=
+	$\frac{1}{4}$
+	$\begin{bmatrix}
+		1 & 1 & 1 & 1 \\
+		1 & -i  & -1 & i \\
+		1 & -1 & 1 & -1 \\
+		1 & i & -1 & -i \\
+	\end{bmatrix}$
+	$\begin{bmatrix}
+		4 \\
+		0 \\
+		0 \\
+		0
+	\end{bmatrix}$
+	= 
+	$\begin{bmatrix}
+		1 \\
+		1 \\
+		1 \\
+		1
+	\end{bmatrix}$
+	Since we have the coefficient vector of the product, we can use it to find $C(x)$. In this case, $C(x) = 1 + x + x^2 + x^3$.
+
+	\textbf{Part b: verifying correctness:} \newline
+	$A(x) = x^2 + 0 \cdot x + 1$ \newline
+	$B(x) = 0 \cdot x^2 + x + 1$
+	\newline
+	\newline
+	\vbox{
+		\openup2pt
+		\def\trule{\noalign{\smallskip\hrule\smallskip}}
+		\halign{&\tabskip1em$\mathstrut#$\cr
+			&   & x^2\ + & 0x\ + & 1 \cr
+			\times&   & 0x^2\ +  & x\ + & 1 \cr
+			\trule
+			&  & x^2\ + & 0x\ + & 1 \cr
+			     & x^3\ + & 0x^2\ + & x \cr
+			\trule
+			     & x^3\ + & x^2\ + &x\ + & 1 \cr
+		}
+	}
+	\newline
+	Thus our FFT computation is accurate.
+
+
 	\newpage
 	\textbf{\underline{Problem 5: }}Given an array of positive integers $A[1,\dots,n]$, and an integer
 	$M>0$, you want to partition the array into segments $A[1,\dots,i_1],\
