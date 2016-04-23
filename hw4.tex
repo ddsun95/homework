@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage,amsthm,amsfonts,amssymb,epsfig,amsmath,soul}
+
+\begin{document}
+\begin{flushleft}
+	David Sun \newline
+	CMPS 102 \newline
+	Homework 4
+	\item\textbf{\underline{Problem 1:}} \newline (a) The chart below show's Dijkstra's algorithm on the graph. The letter next to each weight keeps track of the parent node of the shortest path tree for that iteration. Assume vertex $A$ is the source. 
+	
+	\begin{center}
+		\begin{tabular}{ | p{1cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | }
+			\hline
+			$ $ & A & B & C & D & E & F & G & H\\ 
+			
+			\hline
+			A & 0 & 1 (A) & $\infty$ & $\infty$ & 2 (A) & 10 (A) & $\infty$ & $\infty$ \\
+			
+			\hline
+			B & 0 & 1 (A) & 2 (B) & $\infty$ & 2 (A) & 9 (B) & 4 (B) & $\infty$ \\
+			
+			\hline
+			C & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 9 (B) & 3 (C) & $\infty$ \\
+			
+			\hline
+			E & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & $\infty$ \\
+			
+			\hline
+			G & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6(E) & 3 (C) & 13 (G)\\
+			
+			\hline
+			F & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & 13 (G)\\
+			
+			\hline
+			D & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & 10 (D)\\
+			
+			\hline
+			H & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & 10 (D)\\
+			\hline
+		\end{tabular}
+	\end{center}
+	(b) Show the shortest path tree corresponding to running Dijkstra on
+	this graph. 
+	\newline
+	From the table, we can derive the shortest-path tree by looking at the top-most row and bottom-most row. In this case, the edge set for our shortest-path tree is $\lbrace AB, BC, CD, AE, EF, CG, DH\rbrace$. Thus the tree can be visualized as:
+	
+	\includegraphics[width=3in]{graph1.png}
+	\newpage
+	\item\textbf{\underline{Problem 2:}} Trace Kruskal's algorithm on the graph.
+	\newline
+	First we sort the edges by weight and we construct a tree by taking the edges in order so long as it does not introduce a cycle. 
+	\newline
+	\begin{tabular}{ | p{1cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | }
+		\hline
+		$ $ & A & B & C & D & E & F & G & H\\ 
+		
+		\hline
+		A & 0 & 1 (A) & $\infty$ & $\infty$ & 2 (A) & 10 (A) & $\infty$ & $\infty$ \\
+		
+		\hline
+		B & 0 & 1 (A) & 2 (B) & $\infty$ & 2 (A) & 9 (B) & 4 (B) & $\infty$ \\
+		
+		\hline
+		C & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 9 (B) & 3 (C) & $\infty$ \\
+		
+		\hline
+		E & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & $\infty$ \\
+		
+		\hline
+		G & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6(E) & 3 (C) & 13 (G)\\
+		
+		\hline
+		F & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & 13 (G)\\
+		
+		\hline
+		D & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & 10 (D)\\
+		
+		\hline
+		H & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & 10 (D)\\
+		\hline
+	\end{tabular}
+
+	
+
+\end{flushleft}
+\end{document}
