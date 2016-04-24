@@ -160,7 +160,14 @@
 		change or prove they cannot change.
 	\end{enumerate}
 
-	\textbf{Part 1: }The minimum spanning tree does not change. Assume towards a contradiction that when the function to every $e \in E$, that a different MST $M'$ can be constructed where $M'$ contains a different edge from the original MST of $G$. By definition of an MST, the sum of the weights in the original MST is minimized. Note that $f(w_e)$ is strictly increasing. Thus for every $e_1, e_2 \in E$ and $e_1 < e_2$, then $f(e_1) < f(e_2)$. This means that if $M'$ contained a different edge than the original MST, 
+	\textbf{Part 1: }The minimum spanning tree does not change. Assume towards a contradiction that when the function is applied to every $e \in E$, that a different MST $M'$ can be constructed where $M'$ contains a different edge from the original MST of $G$. By definition of an MST, the sum of the weights in the original MST is minimized. Note that $f(w_e)$ is strictly increasing. Thus for every $e_1, e_2 \in E$ and $e_1 < e_2$, then $f(e_1) < f(e_2)$. Then if $M'$ contained a different edge from the original MST, $M'$ must have taken an edge whose weight was greater than some other edge taken by the original MST $e_x$, where $f(e_x)$ has lower weight than the edge taken and would have still spanned the graph. In this case weights of $M'$ is no longer minimal, thus $M'$ must be the exact same MST of $G$. 
 	
+	\textbf{Part 2: }The shortest path tree can potentially change. Consider the following graph
+	\newline
+	\includegraphics[width=4in]{graph55.png}
+	\newline
+	We know that $f$ is a strictly increasing function, so let $f(1) = 9$ and $f(10) = 11$. That means edges $A - B$ and $B - C$ will have weight 9 and edge $A - C$ will have weight 11. Our new shortest path tree changes as such
+	\newline
+	\includegraphics[width=4in]{graph66.png}
 \end{flushleft}
 \end{document}
