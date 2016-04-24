@@ -50,37 +50,86 @@
 	\newline
 	First we sort the edges by weight and we construct a tree by taking the edges in order so long as it does not introduce a cycle. 
 	\newline
-	\begin{tabular}{ | p{1cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | p{1.2cm} | }
+	\begin{tabular}{ | p{2cm} | p{2cm} | p{5cm} | }
 		\hline
-		$ $ & A & B & C & D & E & F & G & H\\ 
+		Edge & Weight & Take? \\
+		
+
+		\hline
+		A - E & 1 & Yes \\
 		
 		\hline
-		A & 0 & 1 (A) & $\infty$ & $\infty$ & 2 (A) & 10 (A) & $\infty$ & $\infty$ \\
+		A - B & 2 & Yes \\
 		
 		\hline
-		B & 0 & 1 (A) & 2 (B) & $\infty$ & 2 (A) & 9 (B) & 4 (B) & $\infty$ \\
+		B - F & 2 & Yes \\
 		
 		\hline
-		C & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 9 (B) & 3 (C) & $\infty$ \\
+		C - D & 3 & Yes \\
 		
 		\hline
-		E & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & $\infty$ \\
+		F - G & 3 & Yes \\
 		
 		\hline
-		G & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6(E) & 3 (C) & 13 (G)\\
+		E - F & 4 & No, introduces cycle ABEF. \\
 		
 		\hline
-		F & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & 13 (G)\\
+		C - G & 4 & Yes \\
 		
 		\hline
-		D & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & 10 (D)\\
+		B - E & 5 & No, introduces cycle ABE \\
 		
 		\hline
-		H & 0 & 1 (A) & 2 (B) & 7 (C) & 2 (A) & 6 (E) & 3 (C) & 10 (D)\\
+		C - F & 5 & No, introduces cycle CFG \\
+		
 		\hline
+		D - G & 5 & No, introduces cycle CGD \\
+		
+		\hline
+		G - H & 6 & Yes \\
+		
+		\hline
+		B - C & 7 & No, the tree is spanning \\
+		
+		\hline
+		D - H & 7 & No, the tree is spanning \\
+		
+		\hline
+		
 	\end{tabular}
-
+	\newline
+	\newline
+	Our MST can be visualized as \newline
+	\includegraphics[width=4in]{graph2.png}
+	\newline
+	\item\textbf{\underline{Problem 3:}} \begin{enumerate}
+		\item
+		Consider the edge $(B,E)$ in the graph of Problem 2.
+		Either show that there is a minimum cost spanning tree using
+		this edge by applying the cut property, or
+		prove that this edge is not used in any minimum cost
+		spanning tree using the cycle property.
+		\item
+		Ditto for edge $(C,G)$.
+	\end{enumerate}
+	{part 1:} Consider the cycle $A - B$, $B - E$, $E - A$. Out of all these edges $B - E$ has maximal weight. By the cycle property, edge $B - E$ is not part of any MST of the graph in problem 2. 
+	\newline
+	\newline
+	{part 2:} Consider the cut $\lbrace C, D \rbrace$. The corresponding cut-set is the set of edges \newline $\lbrace$$C - B,$ $C - F,$ $C - G,$ $D - G,$ $H - D \rbrace$. Out of these set of edges, edge $C - G$ has the minimal weight of 4, so by the cut property, the MST of problem 2 must contain edge $C - G$. 
+	\newline
+	\newpage
+	\item\textbf{\underline{Problem 4:}} Prove or disprove the following statements about an
+	arbitrary undirected graph $G=(V,E)$:
+	\begin{enumerate}
+		%\item The shortest-path tree computed by Dijkstra’s algorithm is necessarily
+		%an MST.
+		\item If e is part of some MST of G, then it must be a lightest edge
+		in some cutset of G.
+		\item If graph G has more than $|V | - 1$ edges, and there is a unique
+		heaviest edge, then this edge cannot be part of a minimum spanning
+		tree. 
+		\item The shortest path between two nodes is necessarily part of some MST.
+	\end{enumerate}
 	
-
 \end{flushleft}
 \end{document}
